@@ -9,10 +9,22 @@
     </head>
     <body>
       <div class="page-header">
-        {% if user.is_authenticated %}
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        {% endif %}
         <h1><a href="/">myForum</a></h1>
+      </div>
+      <div class = "page-header">
+        <nav class="navbar navbar-light bg-light" style = "background-color:#2F4F4F;">
+          {% if user.is_authenticated %}
+              <a class="btn btn-default top-menu" href="{% url 'post_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+              <a class="btn btn-default" href="{% url 'logout_view' %}">Logout</a>
+          {% else %}
+            <a class="btn btn-default" href="{% url 'user_signup' %}">SignUp</a> Or
+            <a class="btn btn-default" href="{% url 'login_view' %}">Login</a>
+          {%  endif %}
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" id = "form-input" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </nav>
       </div>
       <div class="content container">
           <div class="row">

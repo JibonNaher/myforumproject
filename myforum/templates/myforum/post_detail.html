@@ -13,4 +13,12 @@
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
+    <div class="post">
+    {% if user.is_authenticated %}
+      <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Answer</button>
+      </form>
+    {% endif %}
+    </div>
 {% endblock %}
