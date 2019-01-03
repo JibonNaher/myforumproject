@@ -49,7 +49,7 @@ h1, h2, h3, h4 {
 }
 
 .post-form textarea, .post-form input {
-    width: 60%;
+    width: 80%;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {

@@ -1,3 +1,6 @@
+
+from __future__ import unicode_literals
+
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -26,11 +29,3 @@ class Comment(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-
-
-class Profile(models.Model):
-    username = models.CharField(max_length = 100)
-    email = models.CharField(max_length = 100)
-    password = models.CharField(max_length = 20)
-    joined_date = models.DateTimeField(default=timezone.now)
-    

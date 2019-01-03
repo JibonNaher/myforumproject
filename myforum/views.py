@@ -9,8 +9,8 @@ from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 from .forms import LoginForm
 from .forms import CommentForm
-from .models import Profile
 from django.contrib.auth import logout
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def post_list(request):
@@ -49,12 +49,13 @@ def user_signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            profile = form.save(commit=False)
+            user = form.save(commit=False)
             #user.refresh_from_db()  # load the profile instance created by the signal
-            profile.joined_date = timezone.now()
-            profile.save()
+            #user.profile.joined_date = timezone.now()
+            user.save()
+            username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=profile.username, password=raw_password)
+            user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('post_list')
     else:
@@ -66,18 +67,28 @@ def logout_view(request):
     return redirect('post_list')
 
 def login_view(request):
-    if request.method == "POST":
-        form = LoginForm(request.POST)
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            profile = form.save(commit=False)
-            u_username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
-            user = authenticate(username=u_username, password=raw_password)
+            user = form.get_user()
             login(request, user)
             return redirect('post_list')
     else:
-        form = LoginForm()
+        form = AuthenticationForm()
     return render(request, 'myforum/login.html', {'form': form})
+
+    # if request.method == "POST":
+    #     form = LoginForm(request.POST)
+    #     if form.is_valid():
+    #         user = form.save(commit=False)
+    #         u_username = form.cleaned_data.get('username')
+    #         raw_password = form.cleaned_data.get('password1')
+    #         user = authenticate(username=u_username, password=raw_password)
+    #         login(request, user)
+    #         return redirect('post_list')
+    # else:
+    #     form = LoginForm()
+    # return render(request, 'myforum/login.html', {'form': form})
 
 
 def post_edit(request, pk):

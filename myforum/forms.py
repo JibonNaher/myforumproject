@@ -1,7 +1,6 @@
 from django import forms
 
 from .models import Post
-from .models import Profile
 from .models import Comment
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -27,11 +26,9 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-class LoginForm(forms.ModelForm):
+class LoginForm(UserCreationForm):
+    username = forms.CharField(max_length=30, required=True, help_text='Enter usernmae.')
+
     class Meta:
-        model = Profile
-        fields = ('username', 'password')
-        widgets = {
-            # telling Django your password field in the mode is a password input on the template
-            'password': forms.PasswordInput()
-        }
+        model = User
+        fields = ('username', 'password1')
