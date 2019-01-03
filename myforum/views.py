@@ -14,11 +14,12 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'myforum/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    #comments = get_object_or_404(Comment, Comment.post = post)
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
