@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from .forms import SignUpForm
 from .forms import LoginForm
 from .forms import CommentForm
@@ -15,11 +16,13 @@ from django.contrib.auth.forms import AuthenticationForm
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'myforum/post_list.html', {'posts': posts})
+    users = User.objects.all()
+    msg_blocks = {'posts': posts, 'users': users}
+    return render(request, 'myforum/post_list.html', msg_blocks)
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    #comments = get_object_or_404(Comment, Comment.post = post)
+    comments = post.comments.order_by('-created_date')
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -30,7 +33,7 @@ def post_detail(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
-    msg_blocks = {'post': post, 'form': form}
+    msg_blocks = {'post': post, 'form': form, 'comments':comments}
     return render(request, 'myforum/post_detail.html', msg_blocks)
 
 def post_new(request):

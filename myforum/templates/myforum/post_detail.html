@@ -29,7 +29,7 @@
     <div>
       <h3>Comments</h3>
     </div>
-    {% for comment in post.comments.all %}
+    {% for comment in comments %}
     <div class="comment">
         <div class="date">{{ comment.created_date }}</div>
         <strong>by {% if comment.author == user %} you

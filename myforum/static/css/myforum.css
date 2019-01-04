@@ -67,14 +67,17 @@ h1, h2, h3, h4 {
     font-size: 15pt;
     margin-right: 20px;
 }
-
-.post {    margin-bottom: 30px;
-    width: 80%;
+.post{
+  height: 100%;
 }
-
 .post h1 a, .post h1 a:visited {
   color: #2F4F4F;
   font-family: 'Lobster';
+}
+
+.user-list{
+  float: right;
+  margin: 20px;
 }
 .comment {
     margin: 20px 0px 20px 20px;
