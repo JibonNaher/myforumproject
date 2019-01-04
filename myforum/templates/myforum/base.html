@@ -19,7 +19,6 @@
               <a class="btn btn-default top-menu" href="{% url 'post_new' %}" data-toggle="tooltip" title="create new post" ><span class="glyphicon glyphicon-plus"></span></a>
               <a class="btn btn-default top-menu" href="{% url 'post_new' %}" data-toggle="tooltip" title="my profile"><span class="glyphicon glyphicon-user"></span></a>
               <a class="btn btn-default" href="{% url 'logout_view' %}">Logout</a>
-              {{user.username}}
           {% else %}
             <a class="btn btn-default" href="{% url 'user_signup' %}">SignUp</a> Or
             <a class="btn btn-default" href="{% url 'login_view' %}">Login</a>

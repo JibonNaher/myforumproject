@@ -16,20 +16,28 @@
           {% endif %}</h4>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
-    <div class="post">
+    <div class = "post">
     {% if user.is_authenticated %}
-      <form method="POST" class="post-form">{% csrf_token %}
+      <form method="POST" class="comment-form">{% csrf_token %}
         {{ form.as_p }}
         <div class="answer_button">
           <button type="submit" class="save btn btn-default">Answer</button>
         </div>
       </form>
     {% endif %}
+  </div>
+    <div>
+      <h3>Comments</h3>
     </div>
     {% for comment in post.comments.all %}
     <div class="comment">
         <div class="date">{{ comment.created_date }}</div>
-        <strong>{{ comment.author }}</strong>
+        <strong>by {% if comment.author == user %} you
+          {% else %}{{ comment.author.username }}
+          {% endif %}</strong>
+          {% if user.is_authenticated and comment.author == user %}
+               <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+          {% endif %}
         <p>{{ comment.text|linebreaks }}</p>
     </div>
     {% empty %}
