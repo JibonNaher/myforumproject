@@ -14,10 +14,14 @@
     </div>
     <div class="col-sm-4">
       <div class = "user-list">
-        <p>User Lists</p>
-        {% for user in users %}
-        <h3><a href="#">{{ user.username }}</a></h3>
-        {% endfor %}
+        <ul class = "list-group">
+            <li class = "list-group-item">
+               <h2 class = "list-group-item-heading">User List</h2>
+               {% for user in users %}
+               <h4><a href="#">{{ user.username }}</a></h4>
+               {% endfor %}
+            </li>
+        </ul>
       </div>
     </div>
 {% endblock %}
