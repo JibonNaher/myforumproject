@@ -1,9 +1,10 @@
 {% extends 'myforum/base.html' %}
+{% load static %}
 
 {% block content %}
   <div class="col-sm-8">
     <div class = "post">
-      <h2>New post</h2>
+      <h2 style ="padding-left:50px;" >New post</h2>
       <form method="POST" class="post-form">{% csrf_token %}
           {{ form.as_p }}
           <div>
@@ -18,7 +19,13 @@
     {% endif %}
   </div>
   <div class="col-sm-4">
-    <div class = "post rules">
-      <h3> We are very strict about the rules </h3>
+    <div class = "rules">
+      <h3> We are very strict about the rules of the community</h3>
+      <div style ="padding-left:30px;">
+        <p>Is this your first post, <a>want to know clearly about the rules before posting?</a></p>
+        <p>5 user were reported last week, we don't want you to be reported</p>
+        <img src="{% static 'css/images/Sad.png'%}" height="50" width="50" alt="">
+      </div>
+    </div>
   </div>
 {% endblock %}

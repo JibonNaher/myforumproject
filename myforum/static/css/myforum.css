@@ -47,8 +47,9 @@ h1, h2, h3, h4 {
 .navheader{
   background-color: #2F4F4F;
 }
+
 .post-form{
-  padding-left: 100px;
+  padding-left: 50px;
 }
 .post-form textarea {
   width: 100%;
@@ -78,7 +79,9 @@ h1, h2, h3, h4 {
   color: #2F4F4F;
   font-family: 'Lobster';
 }
-
+.rules{
+  padding-left: 100px;
+}
 .user-list{
   float: right;
   margin: 20px;
