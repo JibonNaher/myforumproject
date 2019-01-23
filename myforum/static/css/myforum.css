@@ -47,9 +47,16 @@ h1, h2, h3, h4 {
 .navheader{
   background-color: #2F4F4F;
 }
-
-.post-form textarea, .post-form input {
-    width: 80%;
+.post-form{
+  padding-left: 100px;
+}
+.post-form textarea {
+  width: 100%;
+  height: 200px;
+}
+.post-form input{
+  width: 100%;
+  height: 50px;
 }
 
 .comment-form{
@@ -66,9 +73,6 @@ h1, h2, h3, h4 {
     float: left;
     font-size: 15pt;
     margin-right: 20px;
-}
-.post{
-  height: 100%;
 }
 .post h1 a, .post h1 a:visited {
   color: #2F4F4F;

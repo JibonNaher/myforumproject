@@ -1,6 +1,7 @@
 {% extends 'myforum/base.html' %}
 
 {% block content %}
+  <div class="col-sm-8">
     <div class="post">
         {% if post.published_date %}
             <div class="date">
@@ -20,12 +21,10 @@
     {% if user.is_authenticated %}
       <form method="POST" class="comment-form">{% csrf_token %}
         {{ form.as_p }}
-        <div class="answer_button">
-          <button type="submit" class="save btn btn-default">Answer</button>
-        </div>
+        <button type="submit" class="save btn btn-default">Answer</button>
       </form>
     {% endif %}
-  </div>
+    </div>
     <div>
       <h3>Comments</h3>
     </div>
@@ -43,4 +42,10 @@
     {% empty %}
         <p>No comments here yet :(</p>
     {% endfor %}
+  </div>
+  <div class="col-sm-4">
+    <div class = "post">
+      <h3> Main Post Summary </h3>
+      {{ sum }}
+  </div>
 {% endblock %}
