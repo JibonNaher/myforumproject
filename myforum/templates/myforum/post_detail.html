@@ -1,5 +1,5 @@
 {% extends 'myforum/base.html' %}
-
+{% load static %}
 {% block content %}
   <div class="col-sm-8">
     <div class="post">
@@ -9,7 +9,7 @@
             </div>
         {% endif %}
         {% if user.is_authenticated and post.author == user %}
-             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+             <a class="btn btn-default" data-toggle="tooltip" title="edit post" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}
         <h2>{{ post.title }}</h2>
         <h4>by {% if post.author == user %} you
@@ -44,15 +44,15 @@
     {% endfor %}
   </div>
   <div class="col-sm-4">
-    <div class = "rules">
+    <!--<div class = "rules">
       <h3> Main Post Summary </h3>
       {{ sum }}
-    </div>
+    </div>-->
     <div class = "rules">
       <h3> We are very strict about the rules of the community</h3>
       <div style ="padding-left:30px;">
         <p>Is this your first post, <a>want to know clearly about the rules before posting?</a></p>
-        <p>5 user were reported last week, we don't want you to be reported</p>
+        <p>5 user were reported last week, we don't want you to be reported. <img src="{% static 'css/images/Sad.png'%}" height="35" width="35" alt=""></p>
       </div>
     </div>
   </div>

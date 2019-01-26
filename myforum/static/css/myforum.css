@@ -7,7 +7,6 @@ body {
     padding : 10px;
     padding-left: 40px;
 }
-
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
     font-size: 36pt;
@@ -80,7 +79,11 @@ h1, h2, h3, h4 {
   font-family: 'Lobster';
 }
 .rules{
-  padding-left: 100px;
+  margin-top:40px;
+  margin-left: 30px;
+  padding-left: 20px;
+  border: 2px solid #2F4F4F; !important;
+  border-radius: 5px; !important;
 }
 .user-list{
   float: right;
