@@ -46,6 +46,10 @@ def post_list(request):
     msg_blocks = {'posts': posts, 'users': users}
     return render(request, 'myforum/post_list.html', msg_blocks)
 
+def profile_detail(request, pk):
+    user = get_object_or_404(User, pk = pk)
+    return render(request, 'myforum/profile_detail.html', 'user':user)
+
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     sum_post = gensim_summarize(post.text)
