@@ -4,7 +4,13 @@
 {% block content %}
   <div class="col-sm-8">
     <div class = "post">
-      <h2 style ="padding-left:50px;" >New post</h2>
+      <h2 style ="padding-left:50px;" >
+        {% if heading %}
+        Edit Post
+        {% else %}
+        New Post
+        {% endif %}
+      </h2>
       <form method="POST" class="post-form">{% csrf_token %}
           {{ form.as_p }}
           <button type="submit" class="save btn btn-default">Save</button>

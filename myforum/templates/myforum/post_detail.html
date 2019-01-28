@@ -35,7 +35,7 @@
           {% else %}{{ comment.author.username }}
           {% endif %}</strong>
           {% if user.is_authenticated and comment.author == user %}
-               <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+               <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk  %}"><span class="glyphicon glyphicon-pencil"></span></a>
           {% endif %}
         <p>{{ comment.text|linebreaks }}</p>
     </div>

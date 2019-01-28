@@ -63,6 +63,10 @@ def post_detail(request, pk):
     msg_blocks = {'post': post, 'form': form, 'comments':comments, 'sum':sum_post}
     return render(request, 'myforum/post_detail.html', msg_blocks)
 
+def comment_edit(request, post_pk, pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    form = CommentForm(instance=comment)
+
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -135,16 +139,18 @@ def login_view(request):
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = SignUpForm(request.POST, instance=post)
+        form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
+            post.published_date = post.published_date
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'myforum/post_new.html', {'form': form})
+        heading = "Edit Post"
+    msg_blocks = {'form': form, 'heading':heading}
+    return render(request, 'myforum/post_new.html', msg_blocks)
 
 def gensim_summarize(article_text):
     #sentence =  sent_tokenize(article_text)
