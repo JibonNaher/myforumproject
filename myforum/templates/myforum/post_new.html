@@ -11,20 +11,31 @@
       </form>
     </div>
     <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal fade" id="myModal" style = "top:20%;" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
+              <center><h3 class="modal-title">Hey {{user.username}}!!</h3></center>
             </div>
             <div class="modal-body">
-              <p>{{ attack_prob }}.</p>
+              <p style="font-size: 15px;">It seems your post may hurt other people, do you want to take a look again and change a little?</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <center>
+                <div id  = "emni">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Ohh sorry, yes, I want to change<img src="{% static 'css/images/blue-smiley-face-png-31.png'%}" height="25" width="25" alt=""></button>
+                </div>
+              </center>
+            </div>
+            <div class="modal-footer">
+              <center>
+                <div>
+                  <button type="button" class="btn btn-default">I don't care, send anyway<img src="{% static 'css/images/Sad.png'%}" height="25" width="25" alt=""></button>
+                </div>
+              </center>
             </div>
           </div>
 
